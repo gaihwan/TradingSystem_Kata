@@ -1,9 +1,9 @@
-#include "StockerBrokerDriver.h"
+﻿#include "StockerBrokerDriver.h"
 #include <string>
 
 class Application {
 public:
-	//Application(StockerBrokerDriverInterface* driver);
+	Application(StockerBrokerDriverInterface* driver);
 	void selectStockBrocker(std::string stockName);
 	void login(std::string ID, std::string password);
 	void buy(std::string stockCode, int price, int count);
