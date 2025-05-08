@@ -3,6 +3,7 @@
 #include "nemo_api.cpp"
 #include "StockerBrokerDriver.h"
 #include "MockApi.h"
+#include "Application.h"
 
 #include <iostream>
 #include <string>
@@ -65,6 +66,74 @@ TEST(MockDriver, getCurrentPriceTC) {
 
 TEST(MockDriver, getMarketPriceInMinutueTC) {
     MockDriver mock;
+    EXPECT_CALL(mock, getMarketPriceInMinutue("00700", 1))
+        .WillOnce(Return(11000))
+        .WillOnce(Return(11100))
+        .WillRepeatedly(Return(11200));
+
+    //MockAdapter adapter{ &mock }
+    int expected = 0;
+    expected = mock.getMarketPriceInMinutue("00700", 1);
+    EXPECT_EQ(expected, 11000);
+    expected = mock.getMarketPriceInMinutue("00700", 1);
+    EXPECT_EQ(expected, 11100);
+    expected = mock.getMarketPriceInMinutue("00700", 1);
+    EXPECT_EQ(expected, 11200);
+}
+
+
+//TEST(Application, CreateApplicationTC) {
+//    MockDriver* mock = new MockDriver;
+//    Application app{ mock };
+//    EXPECT_NE(app.driver, nullptr);
+//}
+
+TEST(Application, Application_doLoginTC) {
+    MockDriver mock;
+    Application app{ &mock };
+    EXPECT_CALL(mock, doLogin("Anonymous", "1234"));
+    app.login("Anonymous", "1234");
+}
+
+TEST(MockDriver, Application_sellStockTC) {
+    MockDriver mock;
+    Application app{ &mock };
+    EXPECT_CALL(mock, sellStock("00700", 100, 10000));
+
+    //MockAdapter adapter{ &mock }
+    app.sell("00700", 100, 10000);
+}
+
+TEST(MockDriver, Application_buyStockTC) {
+    NiceMock<MockDriver> mock;
+    Application app{ &mock };
+    EXPECT_CALL(mock, buyStock("00700", 500, 12000));
+
+    //MockAdapter adapter{ &mock }
+    app.buy("00700", 500, 12000);
+}
+
+TEST(MockDriver, Application_getCurrentPriceTC) {
+    MockDriver mock;
+    Application app{ &mock };
+    EXPECT_CALL(mock, getCurrentPrice("00700"))
+        .WillOnce(Return(9900))
+        .WillOnce(Return(10000))
+        .WillRepeatedly(Return(10100));
+
+    //MockAdapter adapter{ &mock }
+    int expected = 0;
+    expected = app.getPrice("00700");
+    EXPECT_EQ(expected, 9900);
+    expected = app.getPrice("00700");
+    EXPECT_EQ(expected, 10000);
+    expected = app.getPrice("00700");
+    EXPECT_EQ(expected, 10100);
+}
+
+TEST(MockDriver, Application_getMarketPriceInMinutueTC) {
+    MockDriver mock;
+    Application app{ &mock };
     EXPECT_CALL(mock, getMarketPriceInMinutue("00700", 1))
         .WillOnce(Return(11000))
         .WillOnce(Return(11100))
