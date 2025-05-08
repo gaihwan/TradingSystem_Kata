@@ -4,7 +4,7 @@
 #include <ctime>
 #include <string>
 
-class StockerBrockerDriverInterface {
+class StockerBrokerDriverInterface {
 public:
 	virtual void login(std::string ID, std::string password) = 0;
 	virtual void buy(std::string stockCode, int count, int price) = 0;

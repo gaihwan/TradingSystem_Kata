@@ -1,12 +1,12 @@
 ﻿#include "gmock/gmock.h"
 #include "kiwer_api.cpp"
 #include "nemo_api.cpp"
-#include "StockerBrockerDriver.h"
+#include "StockerBrokerDriver.h"
 
 #include <iostream>
 #include <string>
 
-class InterfaceMock : public StockerBrockerDriverInterface {
+class InterfaceMock : public StockerBrokerDriverInterface {
     MOCK_METHOD(void, login, (std::string ID, std::string password), (override));
     MOCK_METHOD(void, buy, (std::string stockCode, int count, int price), (override));
     MOCK_METHOD(void, sell, (std::string stockCode, int count, int price), (override));
@@ -27,7 +27,7 @@ TEST(TradingSystemTS, CreateMockAPIClass) {
 
 
 TEST(StockBrockerDriverInterface, CreateStockBrockerInterface) {
-    StockerBrockerDriverInterface* brockerInterface = new InterfaceMock();
+    StockerBrokerDriverInterface* brockerInterface = new InterfaceMock();
     EXPECT_NE(&brockerInterface, nullptr); 
 }
 
