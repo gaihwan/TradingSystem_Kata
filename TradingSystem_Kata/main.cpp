@@ -7,6 +7,12 @@ TEST(TradingSystemTS, CreateApplicationClass) {
     EXPECT_EQ(app, nullptr);
 }
 
+
+TEST(TradingSystemTS, CreateMockAPIClass) {
+    MockAPI* mockAPI = nullptr;
+    EXPECT_EQ(mockAPI, nullptr);
+}
+
 int main() {
     ::testing::InitGoogleMock();
     return RUN_ALL_TESTS();
