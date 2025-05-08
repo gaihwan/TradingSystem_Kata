@@ -1,7 +1,7 @@
 #include "StockerBrokerDriver.h"
 #include "nemo_api.cpp"
 
-class KiwerDriver : public StockerBrokerDriverInterface {
+class NemoDriver : public StockerBrokerDriverInterface {
 public:
 	void doLogin(std::string ID, std::string password) override {
 		objAPI.certification(ID, password);
