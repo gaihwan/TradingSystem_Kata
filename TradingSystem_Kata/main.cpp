@@ -2,12 +2,11 @@
 #include "kiwer_api.cpp"
 #include "nemo_api.cpp"
 #include "StockerBrokerDriver.h"
-#include "MockAdapter.h"
 
 #include <iostream>
 #include <string>
 
-class MockDriver : public MockAdapter {
+class MockDriver : public StockerBrokerDriverInterface {
     MOCK_METHOD(void, doLogin, (std::string ID, std::string password), (override));
     MOCK_METHOD(void, buyStock, (std::string stockCode, int count, int price), (override));
     MOCK_METHOD(void, sellStock, (std::string stockCode, int count, int price), (override));
