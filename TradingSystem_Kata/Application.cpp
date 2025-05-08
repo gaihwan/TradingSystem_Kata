@@ -1,8 +1,13 @@
-#include "Application.h"
+﻿#include "Application.h"
 #include "kiwer_api.cpp"
 #include "nemo_api.cpp"
+//#include "MockApi.h"
 #include <windows.h>
 
+
+Application::Application(StockerBrokerDriverInterface* driver) : driver{ driver } 
+{
+}
 
 void Application::selectStockBrocker(std::string stockBrockerName) {
 	if ("Kiwer" == stockBrockerName) {
@@ -29,7 +34,7 @@ void Application::sell(std::string stockCode, int price, int count) {
 }
 
 int Application::getPrice(std::string stockCode) {
-	driver->getCurrentPrice(stockCode);
+	return driver->getCurrentPrice(stockCode);
 }
 
 void Application::buyNiceTiming(std::string stockCode, int price) {
