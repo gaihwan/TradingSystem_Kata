@@ -16,6 +16,7 @@ public:
     MOCK_METHOD(int, getMarketPriceInMinutue, (std::string stockCode, int minute), (override));
 };
 
+
 TEST(MockDriverTS, CreateMockDriverTC) {
     MockDriver* mock = new MockDriver;
     EXPECT_NE(&mock, nullptr);
