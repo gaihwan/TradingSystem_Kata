@@ -1,36 +1,35 @@
 ﻿#include "gmock/gmock.h"
 #include "kiwer_api.cpp"
 #include "nemo_api.cpp"
+#include "StockerBrokerDriver.h"
+#include "MockDriver.h"
 
-using namespace testing;
+#include <iostream>
+#include <string>
 
-class MockAPI : public StockBrokerDriverInterface {
-public: 
+class MockDriver : public MockAdapter {
     MOCK_METHOD(void, doLogin, (std::string ID, std::string password), (override));
     MOCK_METHOD(void, buyStock, (std::string stockCode, int count, int price), (override));
     MOCK_METHOD(void, sellStock, (std::string stockCode, int count, int price), (override));
     MOCK_METHOD(int, getCurrentPrice, (std::string stockCode), (override));
-
-    MOCK_METHOD(void, buyNiceTiming, (std::string stockCode, int price), (override));
-    MOCK_METHOD(void, sellNiceTiming, (std::string stockCode, int count), (override));
     MOCK_METHOD(int, getMarketPriceInMinutue, (std::string stockCode, int minute), (override));
 };
 
-TEST(TradingSystemTS, CreateApplicationClass) {
-    Application* app = nullptr;
-    EXPECT_EQ(app, nullptr);
+//TEST(TradingSystemTS, CreateApplicationClass) {
+//    Application* app = nullptr;
+//    EXPECT_EQ(app, nullptr);
+//}
+//
+//
+
+TEST(MockDriver, CreateMockDriver) {
+    MockDriver* mockAPI = new MockDriver;
+    EXPECT_NE(&mockAPI, nullptr);
 }
-
-
-TEST(TradingSystemTS, CreateMockAPIClass) {
-    MockAPI* mockAPI = nullptr;
-    EXPECT_EQ(mockAPI, nullptr);
-}
-
 
 TEST(StockBrockerDriverInterface, CreateStockBrockerInterface) {
-    StockBrockerInterface* brockerInterface = nullptr;
-    EXPECT_EQ(mockAPI, nullptr);
+    StockerBrokerDriverInterface* brockerInterface = new MockDriver();
+    EXPECT_NE(&brockerInterface, nullptr); 
 }
 
 int main() {

@@ -132,6 +132,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">   %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClCompile Include="nemo_api.cpp" />
+    <ClCompile Include="StockerBrokerDriver.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

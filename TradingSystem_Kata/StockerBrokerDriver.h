@@ -1,0 +1,14 @@
+#pragma once
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+
+class StockerBrokerDriverInterface {
+public:
+	virtual void doLogin(std::string ID, std::string password) = 0;
+	virtual void buyStock(std::string stockCode, int count, int price) = 0;
+	virtual void sellStock(std::string stockCode, int count, int price) = 0;
+	virtual int getCurrentPrice(std::string stockCode) = 0;
+	virtual int getMarketPriceInMinutue(std::string stockCode, int minute) = 0;
+};
