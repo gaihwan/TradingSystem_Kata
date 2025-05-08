@@ -7,11 +7,11 @@
 #include <string>
 
 class InterfaceMock : public StockerBrokerDriverInterface {
-    MOCK_METHOD(void, login, (std::string ID, std::string password), (override));
-    MOCK_METHOD(void, buy, (std::string stockCode, int count, int price), (override));
-    MOCK_METHOD(void, sell, (std::string stockCode, int count, int price), (override));
-    MOCK_METHOD(int, currentPrice, (std::string stockCode), (override));
-    MOCK_METHOD(int, getMarketPrice, (std::string stockCode, int minute), (override));
+    MOCK_METHOD(void, doLogin, (std::string ID, std::string password), (override));
+    MOCK_METHOD(void, buyStock, (std::string stockCode, int count, int price), (override));
+    MOCK_METHOD(void, sellStock, (std::string stockCode, int count, int price), (override));
+    MOCK_METHOD(int, getCurrentPrice, (std::string stockCode), (override));
+    MOCK_METHOD(int, getMarketPriceInMinutue, (std::string stockCode, int minute), (override));
 };
 
 TEST(TradingSystemTS, CreateApplicationClass) {
