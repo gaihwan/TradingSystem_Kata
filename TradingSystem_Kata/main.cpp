@@ -13,6 +13,12 @@ TEST(TradingSystemTS, CreateMockAPIClass) {
     EXPECT_EQ(mockAPI, nullptr);
 }
 
+
+TEST(StockBrockerDriverInterface, CreateStockBrockerInterface) {
+    StockBrockerInterface* brockerInterface = nullptr;
+    EXPECT_EQ(mockAPI, nullptr);
+}
+
 int main() {
     ::testing::InitGoogleMock();
     return RUN_ALL_TESTS();
