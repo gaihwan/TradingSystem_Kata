@@ -7,22 +7,23 @@
 #include <ctime>
 #include <string>
 #include <windows.h>
+#include "Application.cpp"
 
-class NemoAPI {
+class NemoAPI : public Application {
 public:
-	void certification(std::string ID, std::string pass) {
+	void certification(std::string ID, std::string pass) override {
 		std::cout << "[NEMO]" << ID << " login GOOD\n";
 	}
 
-	void purchasingStock(std::string stockCode, int price, int count) {
+	void purchasingStock(std::string stockCode, int price, int count) override {
 		std::cout << "[NEMO]" << stockCode << " buy stock ( price : " << price << " ) * ( count : " << count << ")\n";
 	}
 
-	void sellingStock(std::string stockCode, int price, int count) {
+	void sellingStock(std::string stockCode, int price, int count) override {
 		std::cout << "[NEMO]" << stockCode << " sell stock ( price : " << price << " ) * ( count : " << count << ")\n";
 	}
 
-	int getMarketPrice(std::string stockCode, int minute) {
+	int getMarketPrice(std::string stockCode, int minute) override {
 		//minute ms초 이후 구매가 되는 방식 (최소 1 ms)
 		if (minute <= 0) minute = 1;
 		Sleep(minute);

@@ -6,22 +6,23 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include "Application.cpp"
 
-class KiwerAPI {
+class KiwerAPI : public Application {
 public:
-	void login(std::string ID, std::string password) {
+	void login(std::string ID, std::string password) override {
 		std::cout << ID << " login success\n";
 	}
 
-	void buy(std::string stockCode, int count, int price) {
+	void buy(std::string stockCode, int count, int price) override  {
 		std::cout << stockCode << " : Buy stock ( " << price << " * " << count << ")\n";
 	}
 
-	void sell(std::string stockCode, int count, int price) {
+	void sell(std::string stockCode, int count, int price) override  {
 		std::cout << stockCode << " : Sell stock ( " << price << " * " << count << ")\n";
 	}
 
-	int currentPrice(std::string stockCode) {
+	int currentPrice(std::string stockCode) override {
 		std::srand(std::time(NULL));
 		int ret = std::rand() % 10 * 100 + 5000;
 		return ret;
